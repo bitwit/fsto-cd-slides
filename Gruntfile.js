@@ -19,8 +19,8 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                src: 'notes.md',
-                dest: 'notes.html',
+                src: 'readme.md',
+                dest: 'slides.html',
                 options: {
                     process: function (content, srcpath) {
                         return content
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         },
         concat: {
             dist: {
-                src: ['header.html', 'notes.html', 'footer.html'],
+                src: ['header.html', 'slides.html', 'footer.html'],
                 dest: 'index.html',
             },
         },

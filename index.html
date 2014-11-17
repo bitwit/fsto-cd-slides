@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head><meta charset="utf-8"><title>Postcard - A Social Platform for Content Control</title><meta name="description" content="A framework for easily creating beautiful presentations using HTML"><meta name="author" content="Kyle Newsome"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="css/reveal.min.css"><link rel="stylesheet" href="css/theme/default.css" id="theme"><!-- For syntax highlighting--><link rel="stylesheet" href="lib/css/zenburn.css"><!-- If the query includes 'print-pdf', include the PDF print sheet--><script>if (window.location.search.match(/print-pdf/gi)) {
+	<head><meta charset="utf-8"><title>Easy Countinuous Delivery for Javascript Developers</title><meta name="description" content="A framework for easily creating beautiful presentations using HTML"><meta name="author" content="Kyle Newsome"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="css/reveal.min.css"><link rel="stylesheet" href="css/theme/default.css" id="theme"><!-- For syntax highlighting--><link rel="stylesheet" href="lib/css/zenburn.css"><!-- If the query includes 'print-pdf', include the PDF print sheet--><script>if (window.location.search.match(/print-pdf/gi)) {
 		var link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
@@ -14,33 +14,28 @@
 			<div class="slides">
 
 <section data-markdown>
-<script type="text/template"># Easy continuous delivery for Javascript Developers
+<script type="text/template"># Easy Continuous Delivery for Javascript Developers
+
+By Kyle Newsome
+
+[@kylnew](https://twitter.com/kylnew)
 </script>
 </section></section>
 <section><section data-markdown>
-<script type="text/template">## About
+<script type="text/template">## Agenda
+- Introduction (10m)
+- Demonstration (30m)
+- Discussion/Question (?m)
+- Bonus stuff/Tips, time permitting (10m)
+- Slide Notes [github.com/bitwit/fsto-cd-slides](https://github.com/bitwit/fsto-cd-slides)
+</script>
+</section></section>
+<section><section data-markdown>
+<script type="text/template">## About me
 - Developer @ Sidekick
 - Not an expert in Continuous Delivery
-- Goal today: Convince you Continuous delivery is easy to start. No expertise required.
-</script>
-</section></section>
-<section><section data-markdown>
-<script type="text/template">## Overview
-- Why do continuous delivery?
-- Challenges of life without CD
-- Discuss technologies to be used in demonstration
-- Demonstration
-- Tips
-- Discussion
-</script>
-</section></section>
-<section><section data-markdown>
-<script type="text/template">## Why do continuous delivery?
-- Automatically unit test all your code commits
-- Automatically version your project
-- Automatically deploy with one click
-- Less dependence on any given member of staff
-- Eliminate environment specific quirks from your project (local configurations/ssh keys etc..)
+- Starting Continuous delivery is easy 
+- No expertise required.
 </script>
 </section></section>
 <section><section data-markdown>
@@ -50,13 +45,12 @@
 </section><section data-markdown>
 <script type="text/template">### Decentralized deployment and task knowledge
 - 'Project *x* needs a fix and redeployment' --> "That's *y*'s area of expertise"
-- 'We need to clear the cache' --> "That's *z*'s job"
 
 </script>
 </section><section data-markdown>
 <script type="text/template">### Costing developer time to manually deploy
-- no centralized knowledge base
 - room for error in deployment tasks
+- possibly no centralized documentation for deployment
 
 </script>
 </section><section data-markdown>
@@ -67,9 +61,22 @@
 </section><section data-markdown>
 <script type="text/template">### Versioning is manual and arbitrary
 - Bumping the version number based on feel
+- No real record of actual release dates, or commits
 - Possibly forgetting to bump sometimes
 - Or maybe just not bothering at all
-- No real record of actual releases
+</script>
+</section></section>
+<section><section data-markdown>
+<script type="text/template">## Why do continuous delivery?
+- Automatically deploy with one click
+- Automatically version your project
+- Automatically unit test all your code commits
+	- Have a pulse on your projects; every branch in progress
+- Less dependence on any given member of staff
+- Eliminate environment specific quirks from your project 
+	- local paths
+	- local ssh keys
+	- etc..
 </script>
 </section></section>
 <section><section data-markdown>
@@ -77,31 +84,50 @@
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Strider CD
+<script type="text/template">### Strider
+- Continuous Delivery server
 - Open source
+- Self Hosting is cheap (Can use a small Digital Ocean box)
 - Easy to install
 	
 		$ npm install -g strider
 - Equally as simple to set up and get going
 - Prepare, Test, Deploy
 - Very extendable, write your own plugins
+- Built on MEAN stack
+
+http://stridercd.com/
 
 </script>
 </section><section data-markdown>
 <script type="text/template">### git
-- in particular, some discussion of git workflow and branching
+- Version control system of choice
+- tagging, committing, pushing from CD server
+- *(time permitting)* git workflow and branching
+
+http://git-scm.com/
+
+Recommended reading:
+
+[A Successful Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 </script>
 </section><section data-markdown>
 <script type="text/template">### Grunt
 - Task runner
 - Helps keep everything we want to do to deploy in javascript	
+- Installed with `npm install -g grunt-cli`
+
+http://gruntjs.com/
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Other tech..
-- npm
-- Yeoman
+<script type="text/template">### Yeoman
+- Webapp template generator
+- Great way to get a head start on unit testing structure
+- Installed with `npm install -g yo`
+
+http://yeoman.io/
 </script>
 </section></section>
 <section><section data-markdown>
@@ -110,54 +136,57 @@
 </script>
 </section><section data-markdown>
 <script type="text/template">### The template
-1. Install bare bones template
-2. Commit to new git repo on GitHub
+- Install a Yeoman template
+	- I've picked [generator-node](https://github.com/yeoman/generator-node)
+- Discuss package.json & `npm test`
+	- See [npm scripts](https://www.npmjs.org/doc/misc/npm-scripts.html)
+- Demonstrate some unit testing
+- Commit to new git repo on GitHub
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Strider
-3. Install Strider
-4. Add new Strider user and start Strider
-5. Add the git repo, execute first test
-
-</script>
-</section><section data-markdown>
-<script type="text/template">### package.json
-6. Discuss package.json & `npm test`
-7. (optional) Demonstrate some unit testing
-8. (optional) Discuss `npm postinstall` and `bower install` example
+<script type="text/template">### Strider Local
+- Install Strider locally
+- Add new Strider user and start Strider (localhost:3000)
+- Add the git repo, execute first test
 
 </script>
 </section><section data-markdown>
 <script type="text/template">### Grunt
-9. Install grunt and grunt-bump in project
-10. Discuss grunt-bump settings
+- Install grunt and grunt-bump in project
+- Discuss grunt-bump settings
+- Create a grunt `deploy` task with `bump:minor` included
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Back to Strieder
-11. Add Custom Scripts Plugin to Strider project
-12. Add `grunt bump:minor` to *deploy* of Custom Scripts
-13. Demonstrate latest buld passing and 'deployed' i.e. versioned, tagged, and recommited to git
+<script type="text/template">### Back to Strider Local
+- Add Custom Scripts Plugin to Strider project
+- Add `grunt deploy` to *deploy* of Custom Scripts
+- Demonstrate latest buld passing and 'deployed' i.e. versioned, tagged, and recommited to git
 
 </script>
 </section><section data-markdown>
 <script type="text/template">### Deployment
-14. (optional) Discuss deployment ideas
+- (optional) Discuss deployment ideas
 	- Strider SSH Deploy plugin
-	- node.js projects -> pod
-	- static files -> grunt-ssh (also does ftp)
-	- WordPress plugins - grunt-wp-deploy
+	- node.js projects -> [pod](https://github.com/yyx990803/pod)
+	- static files -> [grunt-ssh](https://github.com/chuckmo/grunt-ssh) (also does ftp)
+	- WordPress plugins - [grunt-wp-deploy](https://github.com/stephenharris/grunt-wp-deploy)
 	- Many other options depending on your project
 
 </script>
 </section><section data-markdown>
 <script type="text/template">### Refinement
-15. (optional) Discuss other useful Strider plugins
+- (optional) Discuss other useful Strider plugins
 	- Strider Environment
 	- Strider MetaData
 	- Strider SlackHQ
 	- Strider Heroku
+
+</script>
+</section><section data-markdown>
+<script type="text/template">### Strider Remote
+- Demonstrate automatic testing on every commit
 </script>
 </section></section>
 <section><section data-markdown>
@@ -187,7 +216,7 @@
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### It starts with _JUST DOING IT_
+<script type="text/template">### It starts with *JUST DOING IT*
 
 </script>
 </section><section data-markdown>
@@ -210,13 +239,23 @@
 <section><section data-markdown>
 <script type="text/template">## Thank you
 
-Slides: 
+Slides: https://github.com/bitwit/fsto-cd-slides
 
-Github: github.com/bitwit
+Github: http://github.com/bitwit
 
 Twitter: @kylnew
 
 Hiring: http://sidekick.pro
+</script>
+</section></section>
+<section><section data-markdown>
+<script type="text/template">### Extra Notes
+- should install grunt-cli and other builders, package managers globally
+	- once your CD stack gets a bit more advanced move to better containerization
+	- hosted CD solutions have this benefit
+- set up git config
+- checks out a commit hash on webhook, on a hitting test checks out a branch
+- if you want to deploy on green automatically, you will need to check the branch out before committing 
 </script></section>
 </div></div>
 <footer>
