@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head><meta charset="utf-8"><title>Easy Countinuous Delivery for Javascript Developers</title><meta name="description" content="A framework for easily creating beautiful presentations using HTML"><meta name="author" content="Kyle Newsome"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="css/reveal.min.css"><link rel="stylesheet" href="css/theme/default.css" id="theme"><!-- For syntax highlighting--><link rel="stylesheet" href="lib/css/zenburn.css"><!-- If the query includes 'print-pdf', include the PDF print sheet--><script>if (window.location.search.match(/print-pdf/gi)) {
+	<head><meta charset="utf-8"><title>Getting Started with Continuous Delivery</title><meta name="description" content="A framework for easily creating beautiful presentations using HTML"><meta name="author" content="Kyle Newsome"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="css/reveal.min.css"><link rel="stylesheet" href="css/theme/default.css" id="theme"><!-- For syntax highlighting--><link rel="stylesheet" href="lib/css/zenburn.css"><!-- If the query includes 'print-pdf', include the PDF print sheet--><script>if (window.location.search.match(/print-pdf/gi)) {
 		var link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
@@ -14,28 +14,30 @@
 			<div class="slides">
 
 <section data-markdown>
-<script type="text/template"># Easy Continuous Delivery for Javascript Developers
+<script type="text/template"># Getting Started with Continuous Delivery
 
 By Kyle Newsome
 
-[@kylnew](https://twitter.com/kylnew)
+Slides: https://github.com/bitwit/fsto-cd-slides
+
+Twitter: [@kylnew](https://twitter.com/kylnew)
 </script>
 </section></section>
 <section><section data-markdown>
 <script type="text/template">## Agenda
-- Introduction (10m)
-- Demonstration (30m)
-- Discussion/Question (?m)
-- Bonus stuff/Tips, time permitting (10m)
+- Why do Continuous Delivery? (10m)
+- Demonstration with Node.JS project (30m)
+- Challenges of Continous Delivery/Tips (10m)
+- Discussion/Questions
 - Slide Notes [github.com/bitwit/fsto-cd-slides](https://github.com/bitwit/fsto-cd-slides)
 </script>
 </section></section>
 <section><section data-markdown>
 <script type="text/template">## About me
-- Developer @ Sidekick
-- Not an expert in Continuous Delivery
-- Starting Continuous delivery is easy 
-- No expertise required.
+- Lead Developer @ Sidekick
+- Started implementing CD processes over the last 6 months
+- We're not experts but we've come a long way
+- No expertise required to get started doing CD
 </script>
 </section></section>
 <section><section data-markdown>
@@ -67,6 +69,19 @@ By Kyle Newsome
 </script>
 </section></section>
 <section><section data-markdown>
+<script type="text/template">## A DevOps Horror Story
+http://dougseven.com/2014/04/17/knightmare-a-devops-cautionary-tale/
+
+The story of how Knight Capital Group, with nearly $400 million in assets went bankrupt in 45-minutes because of a failed deployment
+
+</script>
+</section><section data-markdown>
+<script type="text/template">### [QUOTE]:
+
+...one of Knight’s technicians did not copy the new code to one of the eight SMARS computer servers. Knight did not have a second technician review this deployment and no one at Knight realized that the Power Peg code had not been removed from the eighth server, nor the new RLP code added. Knight had no written procedures that required such a review.
+</script>
+</section></section>
+<section><section data-markdown>
 <script type="text/template">## Why do continuous delivery?
 - Automatically deploy with one click
 - Automatically version your project
@@ -76,7 +91,9 @@ By Kyle Newsome
 - Eliminate environment specific quirks from your project 
 	- local paths
 	- local ssh keys
+	- undocumented dependencies
 	- etc..
+- Deploy with confidence; Sleep better at night
 </script>
 </section></section>
 <section><section data-markdown>
@@ -84,7 +101,7 @@ By Kyle Newsome
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Strider
+<script type="text/template">### Strider CD
 - Continuous Delivery server
 - Open source
 - Self Hosting is cheap (Can use a small Digital Ocean box)
@@ -92,7 +109,6 @@ By Kyle Newsome
 	
 		$ npm install -g strider
 - Equally as simple to set up and get going
-- Prepare, Test, Deploy
 - Very extendable, write your own plugins
 - Built on MEAN stack
 
@@ -190,13 +206,17 @@ http://yeoman.io/
 </script>
 </section></section>
 <section><section data-markdown>
-<script type="text/template">## Tips
+<script type="text/template">## Challenges & Tips
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Almost any project can fit the mold, not just JS projects
-- Strider is, at its simplest, a node application for running terminal commands in the context of a git repo
-- Prepare, Test, Deploy
+<script type="text/template">### It happens over time. There's no sudden revolution
+
+</script>
+</section><section data-markdown>
+<script type="text/template">### Almost any project can fit this mold
+- Prepare, Test, Deploy => That's the paradigm
+- Strider CD is, at its core, a node application for pulling code and running terminal commands
 
 </script>
 </section><section data-markdown>
@@ -208,19 +228,11 @@ http://yeoman.io/
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### It happens over time. There's sudden revolution
-
-</script>
-</section><section data-markdown>
 <script type="text/template">### Form an opinionated git workflow. Use 'key' branches to dictate types of versioning and deployment.
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### It starts with *JUST DOING IT*
-
-</script>
-</section><section data-markdown>
-<script type="text/template">### Set your project up on an integration server as early as possible
+<script type="text/template">### Set projects up on a CD server as early as possible
 - even if you have no unit tests
 - even if you have no deployment procedure
 - get used to keeping it green
@@ -228,7 +240,20 @@ http://yeoman.io/
 
 </script>
 </section><section data-markdown>
-<script type="text/template">### Hard version your dependencies
+<script type="text/template">### Containerize as much as possible
+- If possible, avoid too many global dependencies on the CD server
+- Hosted CD providers shine at this
+
+</script>
+</section><section data-markdown>
+<script type="text/template">### ~~Hard version your dependencies~~ <br/> Manage dependencies with care
+- Projects that use loosely versioned dependencies are adding uncertainty to your build
+- You can try to fight it, but sub dependencies might have it too
+- So monitor and maintain them consciously
+- Look for ways to take a snapshot of exact versions at a point in time, such as:
+	1. Save the build somewhere
+	2. Keep track of exact versions used during build `npm ls --json`
+	3. Possibly zip and store dependencies as well?
 
 </script>
 </section><section data-markdown>
@@ -237,25 +262,13 @@ http://yeoman.io/
 </script>
 </section></section>
 <section><section data-markdown>
-<script type="text/template">## Thank you
+<script type="text/template">## Thanks for listening
 
 Slides: https://github.com/bitwit/fsto-cd-slides
 
 Github: http://github.com/bitwit
 
 Twitter: @kylnew
-
-Hiring: http://sidekick.pro
-</script>
-</section></section>
-<section><section data-markdown>
-<script type="text/template">### Extra Notes
-- should install grunt-cli and other builders, package managers globally
-	- once your CD stack gets a bit more advanced move to better containerization
-	- hosted CD solutions have this benefit
-- set up git config
-- checks out a commit hash on webhook, on a hitting test checks out a branch
-- if you want to deploy on green automatically, you will need to check the branch out before committing 
 </script></section>
 </div></div>
 <footer>

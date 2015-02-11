@@ -48,9 +48,10 @@ sudo apt-get install -qq -y mongodb-org
 sudo apt-get install -qq -y nodejs
 sudo apt-get install -qq -y npm
 # some legacy modules require it to bin /usr/bin/node
-sudo ln -s /usr/bin/nodejs /usr/bin/node 
-# fix permissions so we don't need to `sudo` during npm installs
-sudo chown -R $USER /usr/local
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+# fix global node modules location so we don't need to `sudo` during npm installs
+# then we add the path in strider.upstart.conf
+npm config set prefix ~/npm
 
 ###
 # Install global node modules
@@ -62,5 +63,5 @@ npm install -g strider
 # copy over our upstart script for automatic start on reboots
 # and acces via commands like `sudo service strider start`
 # see strider.upstart.conf for details, and environment settings
-sudo cp ~/strider.upstart.conf /etc/init/strider.conf
+sudo cp ./strider.upstart.conf /etc/init/strider.conf
 

@@ -1,23 +1,25 @@
-# Easy Continuous Delivery for Javascript Developers
+# Getting Started with Continuous Delivery
 
 By Kyle Newsome
 
-[@kylnew](https://twitter.com/kylnew)
+Slides: https://github.com/bitwit/fsto-cd-slides
+
+Twitter: [@kylnew](https://twitter.com/kylnew)
 
 
 ## Agenda
-- Introduction (10m)
-- Demonstration (30m)
-- Discussion/Question (?m)
-- Bonus stuff/Tips, time permitting (10m)
+- Why do Continuous Delivery? (10m)
+- Demonstration with Node.JS project (30m)
+- Challenges of Continous Delivery/Tips (10m)
+- Discussion/Questions
 - Slide Notes [github.com/bitwit/fsto-cd-slides](https://github.com/bitwit/fsto-cd-slides)
 
 
 ## About me
-- Developer @ Sidekick
-- Not an expert in Continuous Delivery
-- Starting Continuous delivery is easy 
-- No expertise required.
+- Lead Developer @ Sidekick
+- Started implementing CD processes over the last 6 months
+- We're not experts but we've come a long way
+- No expertise required to get started doing CD
 
 
 ## Symptoms of life without Continuous Delivery
@@ -39,6 +41,16 @@ By Kyle Newsome
 - Or maybe just not bothering at all
 
 
+## A DevOps Horror Story
+http://dougseven.com/2014/04/17/knightmare-a-devops-cautionary-tale/
+
+The story of how Knight Capital Group, with nearly $400 million in assets went bankrupt in 45-minutes because of a failed deployment
+
+### [QUOTE]:
+
+...one of Knight’s technicians did not copy the new code to one of the eight SMARS computer servers. Knight did not have a second technician review this deployment and no one at Knight realized that the Power Peg code had not been removed from the eighth server, nor the new RLP code added. Knight had no written procedures that required such a review.
+
+
 ## Why do continuous delivery?
 - Automatically deploy with one click
 - Automatically version your project
@@ -48,12 +60,14 @@ By Kyle Newsome
 - Eliminate environment specific quirks from your project 
 	- local paths
 	- local ssh keys
+	- undocumented dependencies
 	- etc..
+- Deploy with confidence; Sleep better at night
 
 
 ## Today's technologies
 
-### Strider
+### Strider CD
 - Continuous Delivery server
 - Open source
 - Self Hosting is cheap (Can use a small Digital Ocean box)
@@ -61,7 +75,6 @@ By Kyle Newsome
 	
 		$ npm install -g strider
 - Equally as simple to set up and get going
-- Prepare, Test, Deploy
 - Very extendable, write your own plugins
 - Built on MEAN stack
 
@@ -137,11 +150,13 @@ http://yeoman.io/
 - Demonstrate automatic testing on every commit
 
 
-## Tips
+## Challenges & Tips
 
-### Almost any project can fit the mold, not just JS projects
-- Strider is, at its simplest, a node application for running terminal commands in the context of a git repo
-- Prepare, Test, Deploy
+### It happens over time. There's no sudden revolution
+
+### Almost any project can fit this mold
+- Prepare, Test, Deploy => That's the paradigm
+- Strider CD is, at its core, a node application for pulling code and running terminal commands
 
 ### Try implementing CD bit by bit
 - version a project
@@ -149,39 +164,35 @@ http://yeoman.io/
 - then some unit testing
 - then some other pre/post deployment tasks
 
-### It happens over time. There's sudden revolution
-
 ### Form an opinionated git workflow. Use 'key' branches to dictate types of versioning and deployment.
 
-### It starts with *JUST DOING IT*
-
-### Set your project up on an integration server as early as possible
+### Set projects up on a CD server as early as possible
 - even if you have no unit tests
 - even if you have no deployment procedure
 - get used to keeping it green
 - keep your project environment agnostic from the start
 
-### Hard version your dependencies
+### Containerize as much as possible
+- If possible, avoid too many global dependencies on the CD server
+- Hosted CD providers shine at this
+
+### ~~Hard version your dependencies~~ <br/> Manage dependencies with care
+- Projects that use loosely versioned dependencies are adding uncertainty to your build
+- You can try to fight it, but sub dependencies might have it too
+- So monitor and maintain them consciously
+- Look for ways to take a snapshot of exact versions at a point in time, such as:
+	1. Save the build somewhere
+	2. Keep track of exact versions used during build `npm ls --json`
+	3. Possibly zip and store dependencies as well?
 
 ### Automate _all the things_
 - anything that happens before or after a commit or deployment can be automated
 
 
-## Thank you
+## Thanks for listening
 
 Slides: https://github.com/bitwit/fsto-cd-slides
 
 Github: http://github.com/bitwit
 
 Twitter: @kylnew
-
-Hiring: http://sidekick.pro
-
-
-### Extra Notes
-- should install grunt-cli and other builders, package managers globally
-	- once your CD stack gets a bit more advanced move to better containerization
-	- hosted CD solutions have this benefit
-- set up git config
-- checks out a commit hash on webhook, on a hitting test checks out a branch
-- if you want to deploy on green automatically, you will need to check the branch out before committing 
